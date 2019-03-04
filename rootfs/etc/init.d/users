@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for dir in `ls -l /home | grep ^d | awk '{print $9}'`; do
+        echo "Processing $dir"
+        userid=`ls -lna /home/$dir | head -2 | tail -1| awk '{print $3}'`
+        echo $userid
+        if [ "$userid" -gt 100 ]; then
+                adduser -u $userid -H -D $dir -s /bin/bash
+				usermod -p `pwgen -1 64` $dir
+        fi
+done

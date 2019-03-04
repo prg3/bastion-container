@@ -1,0 +1,28 @@
+#!/bin/bash
+if [ -f /home/.sshkeys/ssh_host_ed25519_key ] ; then
+	cp -f /home/.sshkeys/ssh_host_ed25519* /etc/ssh
+else
+	ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
+	cp /etc/ssh/ssh_host_ed25519* /home/.sshkeys
+fi
+
+if [ -f /home/.sshkeys/ssh_host_dsa_key ] ; then
+	cp -f /home/.sshkeys/ssh_host_dsa* /etc/ssh
+else
+	ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N ""
+	cp /etc/ssh/ssh_host_dsa* /home/.sshkeys
+fi
+
+if [ -f /home/.sshkeys/ssh_host_rsa_key ] ; then
+	cp -f /home/.sshkeys/ssh_host_rsa* /etc/ssh
+else
+	ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ""
+	cp /etc/ssh/ssh_host_rsa* /home/.sshkeys
+fi
+
+if [ -f /home/.sshkeys/ssh_host_ecdsa_key ] ; then
+	cp -f /home/.sshkeys/ssh_host_ecdsa* /etc/ssh
+else
+	ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N ""
+	cp /etc/ssh/ssh_host_ecdsa* /home/.sshkeys
+fi
